@@ -48,6 +48,12 @@
 						<label for="flightNumber">Flight Number</label>
 						<input type="text" class="form-control" id="flightNumber" placeholder="FlightNumber" ng-model="formData.flightNumber">
 					</div>
+
+					<div class="form-group">
+						<label for="flightNumber">Date</label>
+						<input type="date" class="form-control" id="date" placeholder="Date" ng-model="formData.date">
+					</div>
+
 					
 					<button type="submit" class="btn btn-primary" ng-click="searchFlight()">Search</button>
 				</form>
@@ -60,6 +66,8 @@
 					<th>FLIGHT NUMBER</th>
 					<th>ORIGIN</th>
 					<th>DESTINATION</th>
+					<th>DEPARTURE</th>
+					<th>ARRIVAL</th>
 					<th>STATUS</th>
 				</tr>
 			</thead>
@@ -68,6 +76,8 @@
 					<td><a href="#" role="button" data-toggle="modal" data-target="#myModal"> {{ flight.carrier+flight.flightNumber }}</td>
 					<td>{{ flight.origin }}</td>
 					<td>{{ flight.destination }}</td>
+					<td>{{ flight.departure | date : 'medium' : 'CST' }}</td>
+					<td>{{ flight.arrival | date : 'medium' : 'CST' }}</td>
 					<td>{{ flight.status }}</td>
 				</tr>
 			
