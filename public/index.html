@@ -1,0 +1,80 @@
+<!doctype html>
+
+<html ng-app="myapp">
+<head>
+	<meta charset="utf-8">
+
+	<title>Simple Flight Search Application</title>
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+  <style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#form 	 				{ margin-bottom:50px; }
+		.mb-3 	 				{ margin-bottom:30px; }
+	</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.min.js"></script>
+	<script src="js/controllers/main.js"></script>
+	<script src="js/services/flights.js"></script>
+	<script src="js/core.js"></script>
+</head>
+
+<body ng-controller="mainController">
+	<div class="container">
+		<div class="text-center mb-3">
+			<h2 class="text-primary">Simple Flight Search Application</h2>
+		</div>
+
+		<div id="form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="origin">Orign</label>
+							<input type="text" class="form-control" id="origin" placeholder="Origin" ng-model="formData.origin">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="destination">Destination</label>
+							<input type="text" class="form-control" id="destination" placeholder="Destination" ng-model="formData.destination">
+						</div>
+					</div>
+					OR
+					<div class="form-group">
+						<label for="flightNumber">Flight Number</label>
+						<input type="text" class="form-control" id="flightNumber" placeholder="FlightNumber" ng-model="formData.flightNumber">
+					</div>
+					
+					<button type="submit" class="btn btn-primary" ng-click="searchFlight()">Search</button>
+				</form>
+			</div>
+		</div>
+
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>FLIGHT NUMBER</th>
+					<th>ORIGIN</th>
+					<th>DESTINATION</th>
+					<th>STATUS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="flight in flights">
+					<td><a href="#" role="button" data-toggle="modal" data-target="#myModal"> {{ flight.carrier+flight.flightNumber }}</td>
+					<td>{{ flight.origin }}</td>
+					<td>{{ flight.destination }}</td>
+					<td>{{ flight.status }}</td>
+				</tr>
+			
+			</tbody>
+		</table>
+	</div>
+
+</body>
+
+</html>
